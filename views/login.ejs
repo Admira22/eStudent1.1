@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dobro došli</title>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="form-container log-in-container">
+        <form method="post" action="/login" class="login-box" autocomplete="on">
+            <h1>Prijavi se</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="#" class="social"><i class="fab fa fa-twitter fa-2x"></i></a>
+            </div>
+            <input type="email" name="email" placeholder="Korisničko ime" />
+            <input type="password" name="password" placeholder="Lozinka" />
+            <a href="./register">Nemate korisnički račun?</a>
+            <button type="submit">Prijavi se</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1>eStudent</h1>
+                <p>Dobro došli na mjesto namjenjeno za sve studente, koji žele sticati nova znanja, a pri tome imati sve na jednom mjestu.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

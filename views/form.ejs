@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+    <link rel='stylesheet' href='/stylesheets/student.css' />
+    <link rel='stylesheet' href='/stylesheets/form.css' />
+
+</head>
+
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                        <span class="icon">
+                             <ion-icon name="person"></ion-icon>
+                        </span>
+                    <span class="title">eStudent</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/student/home/:id">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <%for (let i = 0; i < me.length; i++){%>
+                <a href="/student/myProfile/<%=me[i].id%>">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                    <span class="title">Moj profil</span>
+                </a>
+                <%}%>
+            </li>
+
+            <li>
+                <a href="/student/requests">
+                        <span class="icon">
+                            <ion-icon name="help"></ion-icon>
+                        </span>
+                    <span class="title">Pitanja i zahtjevi</span>
+                </a>
+            </li>
+
+           <!-- <li>
+                <a href="/student/form">
+                        <span class="icon">
+                            <ion-icon name="add-outline"></ion-icon>
+                        </span>
+                    <span class="title">Kreiraj objavu</span>
+                </a>
+            </li> -->
+
+            <li>
+                <a href="/student/log-out">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                    <span class="title">Odjavi se</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="details">
+            <div class="recentCustomers">
+                <div class="cardHeader">
+                    <h2>Nova objava</h2>
+                </div>
+                <%for (let i = 0; i < questions.length; i++){%>
+                <form action="/student/form/<%= questions[i].id%>" method="post">
+                    <label for="name">Naziv</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="subject">Predmet</label>
+                    <select name="subject" id="subject">
+                        <option value="s1">Sturkture podataka</option>
+                        <option value="s2">Razvoj softvera</option>
+                        <option value="s3">Odabrana poglavlja IT</option>
+                        <option value="s4">Baze podataka</option>
+                        <option value="s5">Linearna algebra i analitička geometrija</option>
+                        <option value="s6">Programiranje 1</option>
+                        <option value="s7">Razvoj mobilnih aplikacija</option>
+                    </select>
+                    <label for="cover">Dokument/slika</label>
+                    <input type="file" id="cover" name="cover">
+                    <label for="message">Poruka</label><br>
+                    <textarea id="message" name="message" rows="2" cols="50"></textarea><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/js/main.js"></script>
+
+<!--ionicons-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    let list = document.querySelectorAll(".navigation li");
+
+    function activeLink() {
+        list.forEach((item) => {
+            item.classList.remove("hovered");
+        });
+        this.classList.add("hovered");
+    }
+
+    list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+    // Menu Toggle
+    let toggle = document.querySelector(".toggle");
+    let navigation = document.querySelector(".navigation");
+    let main = document.querySelector(".main");
+
+    toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+    };
+
+</script>
+</body>
+
+</html>
