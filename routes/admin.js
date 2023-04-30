@@ -3,8 +3,8 @@ const admin = require("../api/admin");
 const student = require("../api/student");
 const router = express.Router();
 
-router.get('/home/:id', admin.getNews,admin.countStudents,student.getQuestion,function(req, res, next) {
-    res.render('adminView', {news: req.news, students: req.students, questions:req.questions});
+router.get('/home/:id', admin.getNews,admin.countStudents,admin.countQuestions,admin.countAnswers,student.getQuestion,function(req, res, next) {
+    res.render('adminView', {news: req.news, students: req.students,requests: req.requests,answers: req.answers,questions:req.questions});
 });
 router.get('/view-all',admin.getNews,student.getAllQuestions,student.getMe, function(req, res, next) {
     res.render('adminAllQuestions',{news:req.news, questions:req.questions,me:req.me});

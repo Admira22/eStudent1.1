@@ -145,6 +145,44 @@ admin = {
             })
         })
 
+    },
+    countQuestions:function (req,res,next) {
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+
+            client.query(`SELECT COUNT(*) FROM questions;`, function (err, result) {
+                done();
+
+                if (err)
+                    return res.send(err);
+                else {
+                    req.requests = result.rows;
+                    console.log(result);
+                    next();
+                }
+            })
+        })
+
+    },
+    countAnswers:function (req,res,next) {
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+
+            client.query(`SELECT COUNT(*) FROM answers;`, function (err, result) {
+                done();
+
+                if (err)
+                    return res.send(err);
+                else {
+                    req.answers = result.rows;
+                    console.log(result);
+                    next();
+                }
+            })
+        })
+
     }
 }
 module.exports = admin;
