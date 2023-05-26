@@ -107,9 +107,8 @@ student = {
 
     },
     addImageAnswers: async (req, res, next) => {
-        console.log(req.files.cover.name)
-        let result = await upload(util.dataUri(req.files.cover.name, req.files.cover.data))
-        let query = `INSERT INTO answersImage (answers_id, image_name, image_url, image_number) VALUES ($1, $2, $3, 1)`
+        let result = await upload(util.dataUri(req.files.cover.name,req.files.cover.data))
+        let query = `INSERT INTO answersimages (answers_id, image_name, image_url, image_number) VALUES ($1, $2, $3, 1)`
         const params = [req.params.id, req.files.cover.name, result.secure_url]
 
         pool.query(query, params, (err, result) => {
@@ -152,6 +151,25 @@ student = {
             })
         })
 
+
+    },
+    getImage: function (req, res, next) {
+        console.log('HEJ')
+        console.log(req.params.id)
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+            client.query(`SELECT * FROM answersimages WHERE answers_id= $1`, [req.params.id],
+                function (err, result) {
+                    done();
+
+                    if (err) {
+                        return res.send(err);
+                    }
+                    req.image = result.rows[0];
+                    next();
+                })
+        })
 
     },
     editProfile: function (req,res,next) {

@@ -16,8 +16,8 @@ router.get('/requests',student.getQuestionsNotAnswered,student.getMe,function(re
 router.post('/requests',student.askQuestion,function(req, res, next) {
 
 });
-router.get('/more/:id',student.getQuestionById,student.getAnswers,student.getMe,function(req, res, next) {
-    res.render('studentRequestMore',{questions:req.questions, answers:req.answers,me:req.me});
+router.get('/more/:id',student.getQuestionById,student.getAnswers,student.getImage,student.getMe,function(req, res, next) {
+    res.render('studentRequestMore',{questions:req.questions,answers:req.answers,image:req.image,me:req.me});
 });
 router.get('/news-more/:id',admin.getNewsById,student.getMe,function(req, res, next) {
     res.render('studentNews',{news:req.news,me:req.me});

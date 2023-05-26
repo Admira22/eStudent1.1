@@ -85,7 +85,7 @@
                     <h2>Nova objava</h2>
                 </div>
                 <%for (let i = 0; i < questions.length; i++){%>
-                <form action="/student/form/<%= questions[i].id%>" method="post">
+                <form action="/student/form/<%= questions[i].id%>" method="post" enctype="multipart/form-data">
                     <label for="name">Naziv</label>
                     <input type="text" id="name" name="name"><br><br>
                     <label for="subject">Predmet</label>
@@ -95,7 +95,7 @@
                         <option value="s3">Odabrana poglavlja IT</option>
                         <option value="s4">Baze podataka</option>
                         <option value="s5">Linearna algebra i analitička geometrija</option>
-                        <option value="s6">Programiranje 1</option>
+                        <option value="s6">Web programiranje 2</option>
                         <option value="s7">Razvoj mobilnih aplikacija</option>
                     </select>
                     <label for="cover">Dokument/slika</label>
