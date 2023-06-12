@@ -17,8 +17,8 @@ router.get('/edit-user/:id',student.getMe,admin.getStudent,function(req, res, ne
 });
 router.post('/edit-user/:id',admin.editStudent,function(req, res, next) {
 });
-router.get('/more/:id',student.getQuestionById,student.getAnswers, function(req, res, next) {
-    res.render('adminRequestMore', {questions:req.questions, answers:req.answers});
+router.get('/more/:id',student.getQuestionById,student.getAnswers,student.getImage,function(req, res, next) {
+    res.render('adminRequestMore', {questions:req.questions, answers:req.answers,image:req.image,});
 });
 router.get('/news-more/:id',admin.getNewsById, function(req, res, next) {
     res.render('adminNews',{news:req.news});
@@ -32,7 +32,7 @@ router.get('/news', function(req, res, next) {
 router.post('/news', admin.addNews,function(req, res, next) {
     res.render('news');
 });
-router.get('/log-out',function(req, res, next) {
+router.get('./',function(req, res, next) {
     res.render('login');
 });
 module.exports = router;

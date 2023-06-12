@@ -59,7 +59,7 @@
             </li>
 
             <li>
-                <a href="/admin/log-out">
+                <a href="/">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -99,9 +99,7 @@
                     <%}%>
                     <tr>
                         <td style="font-weight: bold;">Slike/dokumenti</td>
-                        <td>bla bla bla</td>
-                        <td><img style ="border-radius: 70%; height: 180px; width: 180px;
-                                       "src="/images/logo1.PNG" alt="slika" style="width:200px"></td>
+                        <td><img src="<%= image.image_url%>" width="500" height="300"></td>
                     </tr>
                     <%for (let i = 0; i < answers.length; i++){%>
                     <tr>

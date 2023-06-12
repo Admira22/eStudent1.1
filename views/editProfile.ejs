@@ -63,7 +63,7 @@
             </li> -->
 
             <li>
-                <a href="/student/log-out">
+                <a href="/">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -90,7 +90,7 @@
                     <h2>Uredi profil</h2>
                 </div>
                 <%for (let i = 0; i < me.length; i++){%>
-                <form action="/student/edit-profile/<%=me[i].id%>" method="post">
+                <form action="/student/edit-profile/<%=me[i].id%>" method="post" enctype="multipart/form-data">
                     <label for="name">Ime</label>
                     <input type="text" id="name" name="name" value="<%=me[i].name%>"><br><br>
                     <label for="lastname">Prezime</label>

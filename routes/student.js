@@ -22,8 +22,8 @@ router.get('/more/:id',student.getQuestionById,student.getAnswers,student.getIma
 router.get('/news-more/:id',admin.getNewsById,student.getMe,function(req, res, next) {
     res.render('studentNews',{news:req.news,me:req.me});
 });
-router.get(`/myProfile/:id`,student.getMe,function(req, res, next) {
-    res.render('profile',{me: req.me});
+router.get(`/myProfile/:id`,student.getMe,student.getProfileImage,function(req, res, next) {
+    res.render('profile',{me: req.me, image: req.image});
 });
 router.get('/form/:id',student.getQuestionById,student.getMe,function(req, res, next) {
     res.render('form',{questions:req.questions,me:req.me});
@@ -35,7 +35,7 @@ router.get('/edit-profile/:id',student.getMe,function(req, res, next) {
 });
 router.post('/edit-profile/:id',student.editProfile,users.addStudentImage,function(req, res, next) {
 });
-router.get('/log-out',function(req, res, next) {
+router.get('./',function(req, res, next) {
     res.render('login');
 });
 module.exports = router;

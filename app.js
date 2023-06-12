@@ -25,12 +25,37 @@ app.use(cookieParser());
 app.use(upload());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/',indexRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
-app.use('/student',studentRouter);
+
+const openRoutes = ['/', '/login', '/register']
+
+app.use((req, res, next) => {
+  if (openRoutes.includes(req.url) || req.url.includes('/register/') || req.url.includes('/'))
+    return next()
+  try {
+    jwt.verify(req.cookies.user_token, '42')
+  } catch (err) {
+    console.log(err)
+    res.redirect('/')
+    return next()
+  }
+  next()
+})
+
+app.use((req, res, next) => {
+  if (!req.cookies.user_type || openRoutes.includes(req.url) || req.url.includes('/register/'))
+    return next()
+  if (req.url.includes('/admin/') && req.cookies.user_type === 'admin')
+    return next()
+  if ((req.url.includes('/student/') && req.cookies.user_type === 'student'))
+    return next()
+  return res.redirect('back')
+})
+
 app.use('/admin',adminRouter);
+app.use('/student',studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

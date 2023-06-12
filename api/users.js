@@ -32,7 +32,7 @@ users = {
     addStudentImage: async (req, res, next) => {
         console.log(req.files.cover.name)
         let result = await upload(util.dataUri(req.files.cover.name, req.files.cover.data))
-        let query = `INSERT INTO studentImage (user_id, image_name, image_url, image_number) VALUES ($1, $2, $3, 1)`
+        let query = `INSERT INTO studentimages (user_id, image_name, image_url, image_number) VALUES ($1, $2, $3, 1)`
         const params = [req.params.id, req.files.cover.name, result.secure_url]
 
         pool.query(query, params, (err, result) => {

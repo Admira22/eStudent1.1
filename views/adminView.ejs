@@ -59,7 +59,7 @@
             </li>
 
             <li>
-                <a href="/admin/log-out">
+                <a href="/">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -81,10 +81,9 @@
         <div class="cardBox">
             <div class="card">
                 <div>
-                    <div class="numbers">3</div>
+                    <div class="numbers"><%= students %></div>
                     <div class="cardName">Broj korisnika</div>
                 </div>
-
                 <div class="iconBx">
                     <ion-icon name="people-outline"></ion-icon>
                 </div>
@@ -92,8 +91,8 @@
 
             <div class="card">
                 <div>
-                    <div class="numbers">11</div>
-                    <div class="cardName">Pitanja</div>
+                    <div class="numbers"><%= requests %></div>
+                    <div class="cardName">Broj pitanja</div>
                 </div>
 
                 <div class="iconBx">
@@ -103,8 +102,8 @@
 
             <div class="card">
                 <div>
-                    <div class="numbers">10</div>
-                    <div class="cardName">Odgovri</div>
+                    <div class="numbers"><%= answers%></div>
+                    <div class="cardName">Broj odgovora</div>
                 </div>
 
                 <div class="iconBx">
@@ -138,6 +137,7 @@
                         </tr>
                         </tbody>
                         <%}%>
+
                 </table>
             </div>
 

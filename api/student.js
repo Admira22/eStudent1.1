@@ -172,6 +172,25 @@ student = {
         })
 
     },
+    getProfileImage: function (req, res, next) {
+        console.log('HEJ')
+        console.log(req.params.id)
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+            client.query(`SELECT * FROM studentimages WHERE user_id= $1`, [req.params.id],
+                function (err, result) {
+                    done();
+
+                    if (err) {
+                        return res.send(err);
+                    }
+                    req.image = result.rows[0];
+                    next();
+                })
+        })
+
+    },
     editProfile: function (req,res,next) {
         pool.connect(function (err, client, done) {
             if (err)

@@ -119,16 +119,17 @@ admin = {
                 if (err)
                     return res.send(err);
                 else {
-                    req.students = result.rows;
-                    result:result;
-                    console.log(result)
-                    console.log(result[0]);
+                   // req.students = result.rows;
+                    req.students = result.rows[0].count;
+                    console.log('o hej')
+                    console.log(result.rows[0].count)
                     next();
                 }
             })
         })
 
     },
+
     getAllRequests: function (req,res,next) {
         pool.connect(function (err, client, done) {
             if (err)
@@ -157,8 +158,7 @@ admin = {
                 if (err)
                     return res.send(err);
                 else {
-                    req.requests = result.rows;
-                    console.log(result);
+                    req.requests = result.rows[0].count;
                     next();
                 }
             })
@@ -176,8 +176,7 @@ admin = {
                 if (err)
                     return res.send(err);
                 else {
-                    req.answers = result.rows;
-                    console.log(result);
+                    req.answers = result.rows[0].count;
                     next();
                 }
             })
