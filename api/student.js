@@ -1,6 +1,9 @@
 const pool = require("../database/database");
 const upload = require("../util/cloudinary");
 const util = require("../util/util_functions");
+const multer = require("multer");
+
+const uploadFile = multer({ dest: 'uploads/' });
 
 student = {
     //get functions (select)
@@ -117,6 +120,27 @@ student = {
                 next()
         })
     },
+
+    insertPDFFile: async (req, res, next) => {
+        try {
+            const result = await upload(util.dataUri(req.file.cover.name, req.file.buffer));
+            const query = 'INSERT INTO pdf_files (name, data) VALUES ($1, $2)';
+            const params = [req.file.cover.name, result.secure_url];
+
+            pool.query(query, params, (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                } else {
+                    next();
+                }
+            });
+        } catch (err) {
+            console.log(err);
+            res.sendStatus(500);
+        }
+    },
+
     isAnswered: function (req,res,next) {
         pool.connect(function (err, client, done) {
             if (err)
@@ -156,6 +180,7 @@ student = {
     getImage: function (req, res, next) {
         console.log('HEJ')
         console.log(req.params.id)
+        console.log("o hej")
         pool.connect(function (err, client, done) {
             if (err)
                 return res.send(err);
@@ -203,7 +228,8 @@ student = {
                     if (err)
                         return res.send(err);
                     else {
-                        res.redirect('/student/myProfile/:id');
+                        console.log('o hej hello')
+                        res.redirect(`/student/myProfile/${req.params.id}`);
                         next();
                     }
                 })

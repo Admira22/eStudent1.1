@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student</title>
     <link rel='stylesheet' href='/stylesheets/student.css' />
+    <link rel='stylesheet' href='/stylesheets/form.css' />
+
 </head>
 
 <body>
@@ -58,7 +60,7 @@
                         </span>
                     <span class="title">Kreiraj objavu</span>
                 </a>
-            </li>-->
+            </li> -->
 
             <li>
                 <a href="/">
@@ -85,31 +87,21 @@
         <div class="details">
             <div class="recentCustomers">
                 <div class="cardHeader">
-                    <h2>Opširnije</h2>
-                    <a href="/student/home/:id" class="btn">Nazad</a>
+                    <h2>Uredi profil</h2>
                 </div>
-                <table>
-                    <%for (let i = 0; i < questions.length; i++){%>
-                    <tr>
-                        <td style="font-weight: bold;">Naziv upita</td>
-                        <td><%= questions[i].question%></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">Predmet</td>
-                        <td><%= questions[i].subject%></td>
-                    </tr>
-                        <%}%>
-                    <tr>
-                        <td style="font-weight: bold;">Slike/dokumenti</td>
-                        <td><img src="<%= image.image_url%>" width="500" height="300"></td>
-                    </tr>
-                        <%for (let i = 0; i < answers.length; i++){%>
-                    <tr>
-                        <td style="font-weight: bold;">Poruka/savjeti</td>
-                        <td><%=answers[i].text%></td>
-                    </tr>
-<%}%>
-                </table>
+                <%for (let i = 0; i < me.length; i++){%>
+                <form action="/student/edit-profile/<%=me[i].id%>" method="post" enctype="multipart/form-data">
+                    <label for="name">Ime</label>
+                    <input type="text" id="name" name="name" value="<%=me[i].name%>"><br><br>
+                    <label for="lastname">Prezime</label>
+                    <input type="text" id="lastname" name="lastname" value="<%=me[i].lastname%>"><br><br>
+                    <label for="email">Korisničko ime</label>
+                    <input type="text" id="email" name="email" value="<%=me[i].email%>"><br><br>
+                   <!-- <label for="cover">Dodaj sliku</label>
+                    <input type="file" id="cover" name="cover"><br><br>-->
+                    <input type="submit" value="Submit">
+                </form>
+                <%}%>
             </div>
 
             <!-- ================= New Customers ================ -->
@@ -147,5 +139,4 @@
 
 </script>
 </body>
-
 </html>

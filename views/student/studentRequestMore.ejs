@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student</title>
     <link rel='stylesheet' href='/stylesheets/student.css' />
-    <link rel='stylesheet' href='/stylesheets/form.css' />
 </head>
 
 <body>
@@ -84,43 +83,38 @@
 
         <!-- ================ Order Details List ================= -->
         <div class="details">
-            <div class="recentOrders">
+            <div class="recentCustomers">
                 <div class="cardHeader">
-                    <h2>Pitanja i zahtjevi</h2>
+                    <h2>Opširnije</h2>
+                    <a href="/student/home/:id" class="btn">Nazad</a>
                 </div>
-                <form action="/student/requests" method="post">
-                    <label for="name">Postavi pitanje</label>
-                    <input type="text" id="name" name="name"><br><br>
-                    <label for="subject">Predmet</label>
-                    <select name="subject" id="subject">
-                        <option value="Strukture podataka">Sturkture podataka</option>
-                        <option value="Razvoj softvera">Razvoj softvera</option>
-                        <option value="Odabrana poglavlja IT">Odabrana poglavlja IT</option>
-                        <option value="Baze podataka">Baze podataka</option>
-                        <option value="Linearna algebra i analitička geometrija">Linearna algebra i analitička geometrija</option>
-                        <option value="Programiranje 1">Programiranje 1</option>
-                        <option value="Razvoj mobilnih aplikacija">Razvoj mobilnih aplikacija</option>
-                    </select>
-                    <input type="submit" value="Submit">
-                </form>
                 <table>
-                    <thead>
-                    <tr>
-                        <td>Predmet</td>
-                        <td>Pitanje</td>
-                    </tr>
-                    </thead>
-                    <tbody>
                     <%for (let i = 0; i < questions.length; i++){%>
                     <tr>
-                        <td><%= questions[i].subject%></td>
+                        <td style="font-weight: bold;">Naziv upita</td>
                         <td><%= questions[i].question%></td>
-                        <td><a href="/student/form/<%= questions[i].id%>" class="status delivered">Odgovori</a></td>
                     </tr>
-                    </tbody>
-                    <%}%>
+                    <tr>
+                        <td style="font-weight: bold;">Predmet</td>
+                        <td><%= questions[i].subject%></td>
+                    </tr>
+                        <%}%>
+                    <tr>
+                        <td style="font-weight: bold;">Slike/dokumenti</td>
+                        <td><img src="<%= image.image_url%>" width="500" height="300"></td>
+                        <br>
+                        <td style="font-weight: bold;"><a href="<%= image.image_url%>">Link</a></td>
+                    </tr>
+                        <%for (let i = 0; i < answers.length; i++){%>
+                    <tr>
+                        <td style="font-weight: bold;">Poruka/savjeti</td>
+                        <td><%=answers[i].text%></td>
+                    </tr>
+<%}%>
                 </table>
             </div>
+
+            <!-- ================= New Customers ================ -->
         </div>
     </div>
 </div>

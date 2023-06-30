@@ -17,12 +17,14 @@ users = {
                           VALUES($1,$2,$3,$4,$5,$6)`, [req.body.type, req.body.name, req.body.lastname,
                                               req.body.email, hash, req.body.study_program],
                     function (err, result) {
-                    done();
+                        done();
 
-                    if (err)
-                        return res.send(err);
-                    else
-                        res.redirect('/login');
+                        if (err)
+                            return res.send(err);
+                        else {
+                            res.redirect('/login');
+                            next();
+                    }
 
 
                 })

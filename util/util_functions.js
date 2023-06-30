@@ -1,8 +1,8 @@
-const DatauriParser = require('datauri/parser');
+const DataUriParser = require('datauri/parser');
 
 const utilFunctions = {
     dataUri: function (name, file) {
-        const parser = new DatauriParser();
+        const parser = new DataUriParser();
         return parser.format(name.slice(-4), file).content;
     }
 }
