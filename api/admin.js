@@ -182,6 +182,86 @@ admin = {
             })
         })
 
-    }
+    },
+
+    getForbiddenWords: function (req,res,next) {
+        pool.connect(function (err, client, done) {
+            if (err) {
+                return res.send(err);
+            }
+            client.query(`SELECT * FROM forbidden_words;`, [], function (err, result) {
+                done();
+
+                if (err) {
+                    return res.send(err);
+                } else {
+                    req.forbiddenWords = result.rows;
+                    next();
+                }
+            })
+        })
+
+
+    },
+    addWord: function (req,res,next){
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+            client.query(`INSERT INTO forbidden_words(word) VALUES($1)`, [req.body.word],
+                function (err, result) {
+                    done();
+
+                    if (err)
+                        return res.send(err);
+                    else{
+                        res.redirect('/admin/words')
+                        next();
+                    }
+
+
+
+                })
+        })
+
+    },
+    deleteForbiddenWords: function (req,res,next) {
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+            client.query(`DELETE FROM forbidden_words WHERE id = $1`, [req.params.id],
+                function (err, result) {
+                    done();
+
+                    if (err)
+                        return res.send(err);
+                    else{
+                        res.redirect('back')
+                        next();
+                    }
+
+
+                })
+        })
+    },
+    deleteQuestion: function (req,res,next) {
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+            client.query(`DELETE FROM questions WHERE id = $1`, [req.params.id],
+                function (err, result) {
+                    done();
+
+                    if (err)
+                        return res.send(err);
+                    else{
+                        res.redirect('back')
+                        next();
+                    }
+
+
+                })
+        })
+
+    },
 }
 module.exports = admin;

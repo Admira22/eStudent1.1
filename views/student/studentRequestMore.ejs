@@ -100,11 +100,19 @@
                     </tr>
                         <%}%>
                     <tr>
-                        <td style="font-weight: bold;">Slike/dokumenti</td>
-                        <td><img src="<%= image.image_url%>" width="500" height="300"></td>
-                        <br>
-                        <td style="font-weight: bold;"><a href="<%= image.image_url%>">Link</a></td>
+                        <td style="font-weight: bold;">Slike/Dokumenti</td>
+                        <% for (let i = 0; i < image.length; i++) { %>
+                            <td><img src="<%= image[i].image_url%>" width="300" height="200" alt="Nije prosljedjena slika"></td>
+                            <td style="font-weight: bold;"><a href="<%= image[i].image_url%>">PDF dokument</a></td>
                     </tr>
+                      <!--  <td style="font-weight: bold;">Slike</td>
+                        <td><img src="<%= image[i].image_url%>" width="300" height="200" alt="Nije prosljedjena slika"></td>
+                    </tr>
+                        <tr>
+                            <td style="font-weight: bold;">Dokumenti</td>
+                            <td style="font-weight: bold;"><a href="<%= image[i].image_url%>">PDF dokument</a></td>
+                        </tr>-->
+                        <%}%>
                         <%for (let i = 0; i < answers.length; i++){%>
                     <tr>
                         <td style="font-weight: bold;">Poruka/savjeti</td>

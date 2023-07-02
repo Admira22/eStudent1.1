@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student</title>
     <link rel='stylesheet' href='/stylesheets/student.css' />
+    <link rel='stylesheet' href='/stylesheets/form.css' />
 </head>
 
 <body>
@@ -20,44 +21,28 @@
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
         </div>
+
         <div class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Lista svih studenata</h2>
+                    <h2>Dodaj novu riječ</h2>
                 </div>
-
-                <table>
-                    <thead>
-                    <tr>
-                        <td>Ime</td>
-                        <td>Prezime</td>
-                        <td>Korisničko ime</td>
-                        <td>Studijski program</td>
-                        <td>Uredi</td>
-                    </tr>
-                    </thead>
-                    <%for (let i = 0; i < users.length; i++){%>
-                    <tbody>
-                    <tr>
-                        <td><%= users[i].name%></td>
-                        <td><%= users[i].lastname%></td>
-                        <td><%= users[i].email%></td>
-                        <td><%= users[i].study_program%></td>
-                        <td><a href="/admin/edit-user/<%= users[i].id%>" class="status delivered">Uredi</a></td>
-
-                    </tr>
-                    <%}%>
-                    </tbody>
-                </table>
+                <form action="/admin/new-word" method="post">
+                    <label for="word">Riječ</label>
+                    <input type="text" id="word" name="word"><br><br>
+                    <input type="submit" value="Dodaj">
+                </form>
             </div>
+
+            <!-- ================= New Customers ================ -->
         </div>
     </div>
-</div>
 </div>
 
 <!-- =========== Scripts =========  -->
 <script src="assets/js/main.js"></script>
 
+<!-- ====== ionicons ======= -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="skripta.js"></script>

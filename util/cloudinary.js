@@ -9,7 +9,6 @@ cloudinary.config({
 const upload = async file => {
     return await cloudinary.uploader.upload(file, {
         folder: 'covers',
-
     })
 }
 

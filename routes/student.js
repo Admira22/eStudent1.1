@@ -28,7 +28,7 @@ router.get(`/myProfile/:id`,student.getMe,student.getProfileImage,function(req, 
 router.get('/form/:id',student.getQuestionById,student.getMe,function(req, res, next) {
     res.render('student/form',{questions:req.questions,me:req.me});
 });
-router.post('/form/:id',student.getQuestionById,student.answers,student.isAnswered,student.addImageAnswers,function(req, res, next) {
+router.post('/form/:id',student.getQuestionById,student.answers,student.isAnswered,student.ddImageAnswers,function(req, res, next) {
 });
 router.get('/edit-profile/:id',student.getMe,function(req, res, next) {
     res.render('student/editProfile',{me:req.me});

@@ -109,7 +109,7 @@ student = {
         })
 
     },
-    addImageAnswers: async (req, res, next) => {
+   addImageAnswers: async (req, res, next) => {
         let result = await upload(util.dataUri(req.files.cover.name,req.files.cover.data))
         let query = `INSERT INTO answersimages (answers_id, image_name, image_url, image_number) VALUES ($1, $2, $3, 1)`
         const params = [req.params.id, req.files.cover.name, result.secure_url]
@@ -121,23 +121,32 @@ student = {
         })
     },
 
-    insertPDFFile: async (req, res, next) => {
-        try {
-            const result = await upload(util.dataUri(req.file.cover.name, req.file.buffer));
-            const query = 'INSERT INTO pdf_files (name, data) VALUES ($1, $2)';
-            const params = [req.file.cover.name, result.secure_url];
+    ddImageAnswers: async (req, res, next) => {
+        const uploadPromises = req.files.cover.map((file, index) => {
+            return new Promise((resolve, reject) => {
+                upload(util.dataUri(file.name, file.data))
+                    .then(result => {
+                        const query = `INSERT INTO answersimages (answers_id, image_name, image_url, image_number) VALUES ($1, $2, $3, $4)`;
+                        const params = [req.params.id, file.name, result.secure_url, index + 1];
 
-            pool.query(query, params, (err, result) => {
-                if (err) {
-                    console.log(err);
-                    res.sendStatus(500);
-                } else {
-                    next();
-                }
+                        pool.query(query, params, (err, result) => {
+                            if (err) reject(err);
+                            else resolve(result.secure_url);
+                        });
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
             });
-        } catch (err) {
-            console.log(err);
-            res.sendStatus(500);
+        });
+
+        try {
+            await Promise.all(uploadPromises);
+            res.locals.image = imageUrls;
+            next();
+        } catch (error) {
+            console.log(error);
+            // Handle the error appropriately
         }
     },
 
@@ -191,7 +200,7 @@ student = {
                     if (err) {
                         return res.send(err);
                     }
-                    req.image = result.rows[0];
+                    req.image = result.rows
                     next();
                 })
         })

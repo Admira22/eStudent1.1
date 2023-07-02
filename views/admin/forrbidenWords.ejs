@@ -20,46 +20,49 @@
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
         </div>
+
         <div class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Lista svih studenata</h2>
+                    <h2>Zabranjene riječi</h2>
                 </div>
 
                 <table>
                     <thead>
+                    <h3>
+                        <a href="new-word">Dodaj novu zabranjenu riječ</a>
+                    </h3>
                     <tr>
-                        <td>Ime</td>
-                        <td>Prezime</td>
-                        <td>Korisničko ime</td>
-                        <td>Studijski program</td>
-                        <td>Uredi</td>
+                        <td>Redni broj</td>
+                        <td>Zabranjena riječ</td>
+                        <td>Obriši riječ</td>
                     </tr>
                     </thead>
-                    <%for (let i = 0; i < users.length; i++){%>
-                    <tbody>
-                    <tr>
-                        <td><%= users[i].name%></td>
-                        <td><%= users[i].lastname%></td>
-                        <td><%= users[i].email%></td>
-                        <td><%= users[i].study_program%></td>
-                        <td><a href="/admin/edit-user/<%= users[i].id%>" class="status delivered">Uredi</a></td>
 
+                    <tbody>
+                    <%for (let i = 0; i < forbiddenWords.length; i++){%>
+                    <tr>
+                        <td><%=forbiddenWords[i].id%></td>
+                        <td><%=forbiddenWords[i].word%></td>
+                        <td><a href="delete-word/<%= forbiddenWords[i].id%>" class="status return">Obriši</a></td>
                     </tr>
-                    <%}%>
                     </tbody>
+                    <%}%>
                 </table>
             </div>
+
+            <!-- ================= New Customers ================ -->
         </div>
     </div>
-</div>
 </div>
 
 <!-- =========== Scripts =========  -->
 <script src="assets/js/main.js"></script>
 
+<!-- ====== ionicons ======= -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="skripta.js"></script>
 </body>
+
 </html>

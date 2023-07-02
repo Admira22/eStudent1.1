@@ -5,69 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="skripta.js"></script>
     <title>Admin</title>
     <link rel='stylesheet' href='/stylesheets/student.css' />
 </head>
 
 <body>
 <div class="container">
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                        <span class="icon">
-                             <ion-icon name="person"></ion-icon>
-                        </span>
-                    <span class="title">eStudent/Admin</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/admin/home/:id">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/admin/users">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Korisnici</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/admin/request">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                    <span class="title">Pitanja i zahtjevi</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/admin/news">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                    <span class="title">Obavjesti</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                    <span class="title">Odjavi se</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <%- include('navigation.ejs') %>
 
     <!-- ========================= Main ==================== -->
     <div class="main">
@@ -169,29 +114,7 @@
 <!-- ====== ionicons ======= -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script>
-    let list = document.querySelectorAll(".navigation li");
-
-    function activeLink() {
-        list.forEach((item) => {
-            item.classList.remove("hovered");
-        });
-        this.classList.add("hovered");
-    }
-
-    list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
-    // Menu Toggle
-    let toggle = document.querySelector(".toggle");
-    let navigation = document.querySelector(".navigation");
-    let main = document.querySelector(".main");
-
-    toggle.onclick = function () {
-        navigation.classList.toggle("active");
-        main.classList.toggle("active");
-    };
-
-</script>
+<script src="skripta.js"></script>
 </body>
 
 </html>

@@ -32,6 +32,20 @@ router.get('/news', function(req, res, next) {
 router.post('/news', admin.addNews,function(req, res, next) {
     res.render('news');
 });
+router.get('/new-word', function(req, res, next) {
+    res.render('admin/newWord');
+});
+router.post('/new-word', admin.addWord,function(req, res, next) {
+    res.render('admin/forrbidenWords');
+});
+router.get('/words', admin.getForbiddenWords,function(req, res, next) {
+    res.render('admin/forrbidenWords',{forbiddenWords:req.forbiddenWords});
+});
+
+router.get('/delete-word/:id',admin.deleteForbiddenWords,function (req, res, next) {
+});
+router.get('/delete/:id',admin.deleteQuestion,function (req, res, next) {
+});
 router.get('./',function(req, res, next) {
     res.render('login');
 });
