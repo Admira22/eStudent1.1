@@ -5,12 +5,12 @@
                         <span class="icon">
                              <ion-icon name="person"></ion-icon>
                         </span>
-                <span class="title">eStudent/Admin</span>
+                <span class="title">eStudent</span>
             </a>
         </li>
 
         <li>
-            <a href="/admin/home/:id">
+            <a href="/student/home/:id">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -19,41 +19,24 @@
         </li>
 
         <li>
-            <a href="/admin/users">
+            <%for (let i = 0; i < me.length; i++){%>
+            <a href="/student/myProfile/<%=me[i].id%>">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
-                <span class="title">Korisnici</span>
+                <span class="title">Moj profil</span>
             </a>
+            <%}%>
         </li>
 
         <li>
-            <a href="/admin/request">
+            <a href="/student/requests">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="help"></ion-icon>
                         </span>
                 <span class="title">Pitanja i zahtjevi</span>
             </a>
         </li>
-
-       <!-- <li>
-            <a href="/admin/words">
-                        <span class="icon">
-                            <ion-icon name="alert-circle-outline"></ion-icon>
-                        </span>
-                <span class="title">Zabranjene riječi</span>
-            </a>
-        </li>-->
-
-        <li>
-            <a href="/admin/news">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                <span class="title">Obavjesti</span>
-            </a>
-        </li>
-
         <li>
             <a href="/">
                         <span class="icon">

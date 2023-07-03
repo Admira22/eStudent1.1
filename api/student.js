@@ -255,6 +255,7 @@ student = {
                 if (err)
                     return res.send(err);
                 else {
+                    console.log('sta je ovo')
                     req.questions = result.rows;
                     next();
                 }

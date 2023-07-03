@@ -13,56 +13,7 @@
 
 <body>
 <div class="container">
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                        <span class="icon">
-                             <ion-icon name="person"></ion-icon>
-                        </span>
-                    <span class="title">eStudent</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/student/home/:id">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-
-            <li>
-                <%for (let i = 0; i < me.length; i++){%>
-                <a href="/student/myProfile/<%=me[i].id%>">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Moj profil</span>
-                </a>
-                <%}%>
-            </li>
-
-            <li>
-                <a href="/student/requests">
-                        <span class="icon">
-                            <ion-icon name="help"></ion-icon>
-                        </span>
-                    <span class="title">Pitanja i zahtjevi</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                    <span class="title">Odjavi se</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <%- include('navigacija.ejs') %>
 
     <div class="main">
         <div class="topbar">
