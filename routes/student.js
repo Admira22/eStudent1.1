@@ -35,6 +35,15 @@ router.get('/edit-profile/:id',student.getMe,function(req, res, next) {
 });
 router.post('/edit-profile/:id',student.editProfile,function(req, res, next) {
 });
+
+router.get('/like/:id' , student.likeQuestion,function(req, res, next) {
+
+});
+router.post('/like/:id' , student.likeQuestion,function(req, res, next) {
+});
+router.get('/sort-by-likes',admin.getNews,student.sortByLikes,student.getMe, function(req, res, next) {
+    res.render('student/sort',{news:req.news, question:req.question,me:req.me});
+});
 router.get('./',function(req, res, next) {
     res.render('login');
 });

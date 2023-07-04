@@ -261,6 +261,44 @@ student = {
                 }
             })
         })
-    }
+    },
+
+    likeQuestion: function (req, res, next) {
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+
+            client.query(`UPDATE questions SET reactions = reactions + 1 WHERE id = $1`, [req.params.id], function (err, result) {
+                done();
+
+                if (err)
+                    return res.send(err);
+                else{
+                    res.redirect('back')
+                    next();
+                }
+
+            })
+        })
+
+    },
+    sortByLikes: function (req, res, next) {
+
+        pool.connect(function (err, client, done) {
+            if (err) {
+                return res.send(err);
+            }
+            client.query(`SELECT * FROM questions ORDER BY reactions desc ;`, [], function (err, result) {
+                done();
+
+                if (err)
+                    return res.send(err);
+                else {
+                    req.question = result.rows;
+                    next();
+                }
+            })
+        })
+    },
 }
 module.exports = student;

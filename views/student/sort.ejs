@@ -23,9 +23,8 @@
         <div class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Najnovije objave</h2>
-                    <a href="/student/view-all" class="btn">Prikaži sve</a>
-                    <a href="/student/sort-by-likes" class="btn">Najpopularnije</a>
+                    <h2>Sve objave</h2>
+                    <a href="/student/home/:id" class="btn">Prikaži najnovije</a>
                 </div>
 
                 <table>
@@ -34,18 +33,17 @@
                         <td>Predmet</td>
                         <td>Tema</td>
                         <td>Opširnije</td>
-                        <td>Rekacija</td>
+                        <td>Broj lajkova</td>
                     </tr>
                     </thead>
                     <tbody>
-                    <%for (let i = 0; i < questions.length; i++){%>
-                    <tr>
-                        <td><%= questions[i].subject%></td>
-                        <td><%= questions[i].question%></td>
-                        <td><a href="/student/more/<%= questions[i].id%>" class="status pending">Vidi više</a></td>
-                        <td><a href="/student/like/<%= questions[i].id%>"><ion-icon name="heart" class="bigger-icon"></ion-icon></a></td>
-
-                    </tr>
+                    <%for (let i = 0; i < question.length; i++){%>
+                        <tr>
+                            <td><%= question[i].subject%></td>
+                            <td><%= question[i].question%></td>
+                            <td><a href="/student/more/<%= question[i].id%>" class="status pending">Vidi više</a></td>
+                            <td><%= question[i].reactions%><ion-icon name="heart" class="bigger-icon"/></td>
+                        </tr>
                     </tbody>
                     <%}%>
                 </table>
@@ -54,18 +52,18 @@
             <!-- ================= New Customers ================ -->
             <div class="recentCustomers">
                 <div class="cardHeader">
-                    <h2>Obavijesti</h2>
+                    <h2>Obavjesti</h2>
                 </div>
                 <table>
                     <%for (let i = 0; i < news.length; i++){%>
-                    <tr>
-                        <td>
-                            <h4><%= news[i].title%><br> <span><%= news[i].subtitle%></span></h4>
-                            <a href="/student/news-more/<%= news[i].id%>" class="status pending">Pročitaj više</a>
+                        <tr>
+                            <td>
+                                <h4><%= news[i].title%><br> <span><%= news[i].subtitle%></span></h4>
+                                <a href="/student/news-more/<%= news[i].id%>" class="status pending">Pročitaj više</a>
 
-                        </td>
-                    </tr>
-                        <%}%>
+                            </td>
+                        </tr>
+                    <%}%>
                 </table>
             </div>
         </div>

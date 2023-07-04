@@ -466,4 +466,7 @@ body {
         right: 0;
         left: initial;
     }
+    .bigger-icon {
+        font-size: 5rem; /* Adjust the size as needed */
+    }
 }
