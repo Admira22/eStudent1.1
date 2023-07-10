@@ -24,12 +24,15 @@ student = {
         })
     },
     askQuestion:function (req,res,next) {
+        const containsForbiddenWord = util.checkIfContainsForbiddenWords(req.forbiddenWords, req.body.name)
+        console.log('oooooooooooooooooooo')
+        console.log(containsForbiddenWord)
         pool.connect(function (err, client, done) {
             if (err)
                 return res.send(err);
 
-            client.query(`INSERT INTO questions (question,subject)
-                          VALUES($1,$2)`, [req.body.name,req.body.subject], function (err, result) {
+            client.query(`INSERT INTO questions (question,subject,isHidden)
+                          VALUES($1,$2,$3)`, [req.body.name,req.body.subject,containsForbiddenWord], function (err, result) {
                 done();
 
                 if (err)
@@ -109,7 +112,7 @@ student = {
         })
 
     },
-   addImageAnswers: async (req, res, next) => {
+    addImageAnswers: async (req, res, next) => {
         let result = await upload(util.dataUri(req.files.cover.name,req.files.cover.data))
         let query = `INSERT INTO answersimages (answers_id, image_name, image_url, image_number) VALUES ($1, $2, $3, 1)`
         const params = [req.params.id, req.files.cover.name, result.secure_url]
@@ -249,7 +252,7 @@ student = {
         pool.connect(function (err, client, done) {
             if (err)
                 return res.send(err);
-            client.query(`SELECT * FROM questions WHERE isanswered = false`, [], function (err, result) {
+            client.query(`SELECT * FROM questions WHERE isanswered = false AND isHidden = false`, [], function (err, result) {
                 done();
 
                 if (err)

@@ -134,7 +134,24 @@ admin = {
         pool.connect(function (err, client, done) {
             if (err)
                 return res.send(err);
-            client.query(`SELECT * FROM questions`, [], function (err, result) {
+            client.query(`SELECT * FROM questions WHERE isHidden = false`, [], function (err, result) {
+                done();
+
+                if (err)
+                    return res.send(err);
+                else {
+                    req.questions = result.rows;
+                    next();
+                }
+            })
+        })
+
+    },
+    getAllForbbidenRequests: function (req,res,next) {
+        pool.connect(function (err, client, done) {
+            if (err)
+                return res.send(err);
+            client.query(`SELECT * FROM questions WHERE isHidden = true`, [], function (err, result) {
                 done();
 
                 if (err)

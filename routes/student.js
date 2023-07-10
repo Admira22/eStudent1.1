@@ -13,7 +13,7 @@ router.get('/view-all',admin.getNews,student.getAllQuestions,student.getMe, func
 router.get('/requests',student.getQuestionsNotAnswered,student.getMe,function(req, res, next) {
     res.render('student/request',{questions:req.questions,me:req.me});
 });
-router.post('/requests',student.askQuestion,function(req, res, next) {
+router.post('/requests',admin.getForbiddenWords,student.askQuestion,function(req, res, next) {
 
 });
 router.get('/more/:id',student.getQuestionById,student.getAnswers,student.getImage,student.getMe,function(req, res, next) {

@@ -26,6 +26,9 @@ router.get('/news-more/:id',admin.getNewsById, function(req, res, next) {
 router.get('/request', admin.getAllRequests,function(req, res, next) {
     res.render('admin/adminRequest',{questions:req.questions});
 });
+router.get('/forbbiden-request', admin.getAllForbbidenRequests,function(req, res, next) {
+    res.render('admin/forbbidenRequests',{questions:req.questions});
+});
 router.get('/news', function(req, res, next) {
     res.render('admin/news');
 });

@@ -22,8 +22,8 @@
         <div class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Pitanja i zahtjevi</h2>
-                    <a href="/admin/forbbiden-request" class="btn">Neprikladna pitanja</a>
+                    <h2>Neprikladna pitanja</h2>
+                    <a href="/admin/request" class="btn">Pitanja i zahtjevi</a>
                 </div>
 
                 <table>
@@ -31,6 +31,7 @@
                     <tr>
                         <td>Predmet</td>
                         <td>Pitanje</td>
+                        <td>Dugme</td>
                     </tr>
                     </thead>
 
@@ -39,6 +40,7 @@
                     <tr>
                         <td><%=questions[i].subject%></td>
                         <td><%=questions[i].question%></td>
+                        <td><a href="delete/<%= questions[i].id%>" class="status return">Obriši</a></td>
                     </tr>
                     </tbody>
                     <%}%>
